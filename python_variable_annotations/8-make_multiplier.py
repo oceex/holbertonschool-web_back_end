@@ -4,7 +4,7 @@ this module will explain the annotations
 """
 
 
-def make_multiplier(multiplier: float) -> float:
+def make_multiplier(multiplier: float) -> typing.Callable[[float], float]:
     """
     a type-annotated function make_multiplier that
      takes a float multiplier as argument and returns
