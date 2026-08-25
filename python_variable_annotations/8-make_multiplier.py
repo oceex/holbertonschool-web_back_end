@@ -2,6 +2,7 @@
 """"
 this module will explain the annotations
 """
+import typing
 
 
 def make_multiplier(multiplier: float) -> typing.Callable[[float], float]:
