@@ -10,4 +10,6 @@ def make_multiplier(multiplier: float) -> float:
      takes a float multiplier as argument and returns
       a function that multiplies a float by multiplier.
     """
-    return lambda x: multiplier * x
+    def mul(num: float) -> float:
+        return num * multiplier
+    return mul(multiplier)
