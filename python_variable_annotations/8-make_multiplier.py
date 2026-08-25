@@ -13,4 +13,4 @@ def make_multiplier(multiplier: float) -> typing.Callable[[float], float]:
     """
     def mul(num: float) -> float:
         return num * multiplier
-    return mul(multiplier)
+    return mul
