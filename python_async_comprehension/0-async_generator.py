@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+"""Module with an async generator that yields random floats after a delay."""
+import asyncio
+import random
+import time
+
+
+async def async_generator():
+    """Loop 10 times, sleeping 1 second before yielding a random float each iteration."""
+    for i in range(10):
+        await time.sleep(1)
+        yield random.random(0,10)
