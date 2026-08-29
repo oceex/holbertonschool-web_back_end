@@ -2,7 +2,6 @@
 """Module with an async generator that yields random floats after a delay."""
 import asyncio
 import random
-import time
 
 
 async def async_generator():
