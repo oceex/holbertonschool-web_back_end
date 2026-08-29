@@ -8,5 +8,5 @@ import time
 async def async_generator():
     """Loop 10 times, sleeping 1 second before yielding a random float each iteration."""
     for i in range(10):
-        await time.sleep(1)
-        yield random.random(0,10)
+        await asyncio.sleep(1)
+        yield random.uniform(0, 10)
