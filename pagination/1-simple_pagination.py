@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 """
-pages
+Simple pagination
 """
 import csv
 import math
-from typing import List
+from typing import List, Tuple
+
+
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    """Return a (start, end) index tuple for the given page and page_size.
+    """
+    start = (page - 1) * page_size
+    end = page * page_size
+    return start, end
 
 
 class Server:
@@ -27,10 +35,9 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """Return the list of rows corresponding to the requested page.
         """
-        getting the page
-        """
-        assert type(page) is int and type(page_size) is int
+        assert isinstance(page, int) and isinstance(page_size, int)
         assert page > 0 and page_size > 0
 
         start, end = index_range(page, page_size)
@@ -40,35 +47,3 @@ class Server:
             return []
 
         return data[start:end]
-
-
-def index_range(page: int, page_size: int) -> tuple:
-    """
-    :param page:
-    """
-    start = (page - 1) * page_size
-    end = page * page_size
-    return start, end
-
-
-server = Server()
-
-try:
-    should_err = server.get_page(-10, 2)
-except AssertionError:
-    print("AssertionError raised with negative values")
-
-try:
-    should_err = server.get_page(0, 0)
-except AssertionError:
-    print("AssertionError raised with 0")
-
-try:
-    should_err = server.get_page(2, 'Bob')
-except AssertionError:
-    print("AssertionError raised when page and/or page_size are not ints")
-
-
-print(server.get_page(1, 3))
-print(server.get_page(3, 2))
-print(server.get_page(3000, 100))
