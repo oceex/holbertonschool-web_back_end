@@ -1,2 +1,0 @@
-// deleting data with condition
-db.school.delete({name: "Holberton school"})
