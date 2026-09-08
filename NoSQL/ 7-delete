@@ -1,2 +1,2 @@
-// updating data with condition
+// deleting data with condition
 db.school.delete({name: "Holberton school"}, {"multi": true})
