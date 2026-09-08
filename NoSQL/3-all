@@ -1,2 +1,2 @@
 // show data
-my_db.school.find()
+school.find()
