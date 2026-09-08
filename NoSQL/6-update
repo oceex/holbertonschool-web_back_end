@@ -1,2 +1,2 @@
 // updating data with condition
-db.school.updateOne({"name": "Holberton school"}, {"$set": {"address": "972 Mission street"}})
+db.school.update_one({"name": "Holberton school"}, {"$set": {"address": "972 Mission street"}})
