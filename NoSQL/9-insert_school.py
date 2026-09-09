@@ -6,8 +6,7 @@ second mudluee
 
 def insert_school(mongo_collection, **kwargs):
     """ inserts a new document in a collection based on kwargs """
-    x = mongo_collection.insert_one({"name": kwargs.get("name"), "address": kwargs.get("address")})
-
+    x = mongo_collection.insert_one(kwargs)
     return id(x)
 
 
