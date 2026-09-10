@@ -3,6 +3,9 @@
 
 
 def top_students(mongo_collection):
+    """
+    top top
+    """
     students = mongo_collection.find({})
     result = []
     for student in students:
