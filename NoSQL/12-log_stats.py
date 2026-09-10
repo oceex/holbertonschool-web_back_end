@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-monogodb
+mongodb
 """
 from pymongo import MongoClient
 
-if __name__=="__main__":
+if __name__ == "__main__":
     client = MongoClient("mongodb://127.0.0.1:27017")
     logs = client["logs"]
     nginx = logs["nginx"]
@@ -13,6 +13,7 @@ if __name__=="__main__":
     print("Methods:")
     for n in x:
         b = nginx.count_documents({"method": n})
-        print(f"method {n}: {b}")
+        print(f"\tmethod {n}: {b}")
 
-    print(f"{logs.count_documents({})} status check")
+    status = nginx.count_documents({"method": "GET", "path": "/status"})
+    print(f"{status} status check")
