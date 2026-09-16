@@ -4,5 +4,3 @@ export default function createEmployeesObject(departmentName, employees) {\
     });
     return emp;
 }
-
-console.log(createEmployeesObject("Software", [ "Bob", "Sylvie" ]));
