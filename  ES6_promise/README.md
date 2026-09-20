@@ -1,1 +1,1 @@
-#ES6 claassess
+#ES6 promise
