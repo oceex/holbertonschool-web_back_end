@@ -1,3 +1,3 @@
 async function getResponseFromAPI(){
-    return 'leen';
+    return await 'leen';
 }
