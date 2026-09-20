@@ -1,4 +1,4 @@
-const weakMap = new WeakMap();
+export const weakMap = new WeakMap();
 
 export default function queryAPI(endpoint){
     const current = weakMap.get(endpoint) || 0;
