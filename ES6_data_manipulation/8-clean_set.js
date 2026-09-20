@@ -4,6 +4,8 @@ export default function cleanSet(set, startString) {
   if (!startString) {
     return '';
   }
+  else if (typeof startString !== 'Sting')
+      return '';
 
   set.forEach((value) => {
     if (value.startsWith(startString)) {
