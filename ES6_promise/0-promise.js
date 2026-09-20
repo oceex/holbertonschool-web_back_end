@@ -1,3 +1,3 @@
-export async function getResponseFromAPI(){
+export default async function getResponseFromAPI(){
     return 'leen';
 }
