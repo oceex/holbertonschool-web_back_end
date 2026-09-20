@@ -5,9 +5,9 @@ export default async function getFullResponseFromAPI(success){
               resolve({
                   status: 200,
                   body: 'Success',
-              });   // fulfilled
+              });
           } else {
-              reject("The fake API is not working currentl"); // rejected
+              reject("The fake API is not working currently");
           }
       });
     });
