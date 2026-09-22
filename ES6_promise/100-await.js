@@ -1,10 +1,10 @@
 import {uploadPhoto, createUser} from './utils.js'
 
 export default async function asyncUploadUser(){
-    return Promise.all([uploadPhoto, createUser]).then((res) =>{
+    return Promise.all([uploadPhoto, createUser]).then(([photo, user]) =>{
         return {
-          photo: res[0],
-          user: res[1],
+          photo: photo,
+          user: user,
         }
     }).catch((e) => {
         return {
