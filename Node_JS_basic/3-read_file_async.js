@@ -28,3 +28,5 @@ async function countStudents(path) {
     console.log(`Number of students in ${field}: ${list.length}. List: ${list.join(', ')}`);
   }
 }
+
+module.exports = countStudents;
