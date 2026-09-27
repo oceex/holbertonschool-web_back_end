@@ -27,8 +27,6 @@ const app = createServer((req, res) => {
         console.log = originalLog;
         res.end(err.message);
       });
-  } else {
-    res.end('Not found');
   }
 });
 
