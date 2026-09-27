@@ -6,7 +6,7 @@ async function countStudents(path) {
     data = await fs.readFile(path, { encoding: 'utf8' });
   } catch (err) {
     console.error(err);
-    return;
+    return undefined;
   }
 
   const lines = data
@@ -20,7 +20,7 @@ async function countStudents(path) {
 
   if (firstnameIdx === -1 || fieldIdx === -1) {
     console.error('Expected "firstname" and "field" columns in header');
-    return;
+    return undefined;
   }
 
   const students = lines.slice(1).map((line) => line.split(',').map((v) => v.trim()));
@@ -31,12 +31,13 @@ async function countStudents(path) {
   for (const student of students) {
     const firstname = student[firstnameIdx];
     const field = student[fieldIdx];
-    if (!field) continue;
 
-    if (!fields[field]) {
-      fields[field] = [];
+    if (field) {
+      if (!fields[field]) {
+        fields[field] = [];
+      }
+      fields[field].push(firstname);
     }
-    fields[field].push(firstname);
   }
 
   for (const field of Object.keys(fields)) {
