@@ -1,24 +1,5 @@
 const express = require('express');
-const {promises: fs} = require("fs");
-
-const app = express();
-
-app.get('/', (req, res) => {
-    res.setHeader('Content-Type', 'text/plain');
-    res.send('Hello Holberton School!');
-
-});
-app.get('/students', async (req, res) => {
-    res.setHeader('Content-Type', 'text/plain');
-    let report;
-    try {
-      report = await studentsReport(process.argv[2]);
-    } catch (err) {
-      report = 'Cannot load the database';
-    }
-    res.end(`This is the list of our students\n${report}`);
-
-});
+const { promises: fs } = require('fs');
 
 async function studentsReport(path) {
   const lines = (await fs.readFile(path, 'utf-8')).split(/\r?\n/).filter(Boolean).slice(1);
@@ -32,6 +13,22 @@ async function studentsReport(path) {
   );
   return [`Number of students: ${lines.length}`, ...perField].join('\n');
 }
+
+const app = express();
+
+app.get('/', (req, res) => {
+  res.type('text/plain').send('Hello Holberton School!');
+});
+
+app.get('/students', async (req, res) => {
+  let report;
+  try {
+    report = await studentsReport(process.argv[2]);
+  } catch (err) {
+    report = 'Cannot load the database';
+  }
+  res.type('text/plain').send(`This is the list of our students\n${report}`);
+});
 
 app.listen(1245);
 
