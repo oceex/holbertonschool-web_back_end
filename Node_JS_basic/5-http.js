@@ -20,25 +20,24 @@ const countStudents = (dataPath) => new Promise((resolve, reject) => {
       return;
     }
 
-    const lines = data.split('\n').filter((line) => line.trim() !== '');
-    // First line is the header
-    const rows = lines.slice(1).map((line) => line.split(','));
+    const rows = data
+      .split('\n')
+      .filter((line) => line.trim() !== '')
+      .slice(1) // header
+      .map((line) => line.split(','))
+      .filter((row) => row.length >= 4);
 
     const fields = {};
-    let total = 0;
-    for (const row of rows) {
-      if (row.length < 4) continue; // skip malformed lines
-      const firstName = row[0];
+    rows.forEach((row) => {
       const field = row[row.length - 1].trim();
-      if (!fields[field]) fields[field] = [];
-      fields[field].push(firstName);
-      total += 1;
-    }
+      fields[field] = (fields[field] || []).concat(row[0]);
+    });
 
-    const report = [`Number of students: ${total}`];
-    for (const [field, names] of Object.entries(fields)) {
+    const report = [`Number of students: ${rows.length}`];
+    Object.keys(fields).forEach((field) => {
+      const names = fields[field];
       report.push(`Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`);
-    }
+    });
     resolve(report);
   });
 });
