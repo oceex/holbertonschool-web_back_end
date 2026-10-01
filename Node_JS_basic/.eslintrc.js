@@ -3,10 +3,11 @@ module.exports = {
     browser: false,
     es6: true,
     jest: true,
+    node: true,
   },
   extends: [
     'airbnb-base',
-    'plugin:jest/all',
+    'plugin:jest/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -16,10 +17,10 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['jest'],
+  plugins: [
+    'jest',
+  ],
   rules: {
-    'max-classes-per-file': 'off',
-    'no-underscore-dangle': 'off',
     'no-console': 'off',
     'no-shadow': 'off',
     'no-restricted-syntax': [
@@ -28,10 +29,10 @@ module.exports = {
       'WithStatement',
     ],
   },
-  overrides:[
+  overrides: [
     {
       files: ['*.js'],
       excludedFiles: 'babel.config.js',
-    }
-  ]
+    },
+  ],
 };
