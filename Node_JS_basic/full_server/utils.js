@@ -1,21 +1,31 @@
-import fs from 'node:fs/promises';
+import fs from 'fs';
 
-export default async function readDatabase(file) {
-  const data = await fs.readFile(file, { encoding: 'utf8' });
-  const result = {};
-  const lines = data
+/**
+ * Reads the CSV database and resolves with an object of arrays:
+ * { CS: ['Johann', ...], SWE: ['Guillaume', ...] }
+ * Rejects with the original error when the file cannot be read.
+ */
+async function readDatabase(path) {
+  const data = await fs.promises.readFile(path, 'utf-8');
+
+  const rows = data
     .split(/\r?\n/)
     .map((line) => line.trim())
     .filter((line) => line !== '')
-    .slice(1)
+    .slice(1) // header
     .map((line) => line.split(','));
 
-  lines.forEach((line) => {
-    if (!result[line[3]]) {
-      result[line[3]] = [];
+  const fields = {};
+  rows.forEach((row) => {
+    const firstName = row[0];
+    const field = row[3];
+    if (!fields[field]) {
+      fields[field] = [];
     }
-    result[line[3]].push(line[0]);
+    fields[field].push(firstName);
   });
 
-  return result;
+  return fields;
 }
+
+export default readDatabase;
